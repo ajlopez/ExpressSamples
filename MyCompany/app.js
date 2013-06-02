@@ -37,8 +37,12 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+
 app.get('/customers', customers.index);
 app.get('/customers/new', customers.create);
+app.post('/customers/new', customers.insert);
+app.get('/customers/:id', customers.view);
+
 app.get('/about', function (req, res) { res.render('index', { title: 'About' }); });
 app.get('/contact', function (req, res) { res.render('index', { title: 'Contact' }); });
 

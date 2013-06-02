@@ -25,6 +25,24 @@ function Repository(db, name) {
             }
         });
     };
+    
+    this.save = function (item, callback) {
+        getCollection(function (err, collection) {
+            if (err)
+                callback(err);
+            else
+                collection.insert(item, callback);
+        });
+    };
+    
+    this.findById = function (id, callback) {
+        getCollection(function (err, collection) {
+            if (err)
+                callback(err);
+            else
+                collection.findOne({ _id: collection.db.bson_serializer.ObjectID.createFromHexString(id) }, callback);
+        });
+    };
 };
 
 module.exports = {
