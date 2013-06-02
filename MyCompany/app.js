@@ -38,6 +38,9 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/customers', customers.index);
+app.get('/customers/new', customers.create);
+app.get('/about', function (req, res) { res.render('index', { title: 'About' }); });
+app.get('/contact', function (req, res) { res.render('index', { title: 'Contact' }); });
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

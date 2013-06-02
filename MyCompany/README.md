@@ -1,11 +1,12 @@
-# My Bootstrap
+# My Company
 
 Simple index page with:
 
 - Express
-- Ejs
-- Ejs-locals for layout
-- Twitter Bootstrap
+- MongoDb
+- Ejs for views
+- Ejs-locals for view layout
+- Twitter Bootstrap for styles
 
 ## Install
 
@@ -22,6 +23,7 @@ Locally starts as `http://localhost:3000`.
 
 ## References
 
+- [The Node.JS MongoDB Driver Manual](http://mongodb.github.io/node-mongodb-native/)
 - [Twitter Bootstrap](http://twitter.github.io/bootstrap/)
 - [Twitter Bootstrap Starter Template](http://twitter.github.io/bootstrap/examples/starter-template.html)- [ejs-locals](https://github.com/RandomEtc/ejs-locals)
 - [Express template demo](https://github.com/chovy/express-template-demo)
