@@ -4,7 +4,8 @@ Simple Express/Node.js samples
 
 ## Samples
 
-TBD
+- [My Home](https://github.com/ajlopez/ExpressSamples/tree/master/MyHome) Simple sample with stylesheets, ejs and layout
+- [My Bootstrap](https://github.com/ajlopez/ExpressSamples/tree/master/MyBootstrap) Simple sample using Twitter Bootstrap
 
 ## Contribution
 
