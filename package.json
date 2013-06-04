@@ -1,0 +1,12 @@
+{
+  "name": "Express-Samples",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+  },
+  "dependencies": {
+    "express": "3.2.5",
+    "ejs": "0.8.4",
+    "ejs-locals": "1.0.2"
+  }
+}
