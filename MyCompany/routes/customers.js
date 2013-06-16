@@ -12,7 +12,7 @@ function index(req, res) {
         if (err)
             res.render('error', { error: err });
         else
-            res.render('customers', { title: 'Customers', items: items });
+            res.render('customerlist', { title: 'Customers', items: items });
     });
 }
 
@@ -52,7 +52,7 @@ function view(req, res) {
         if (err)
             res.render('error', { error: err});
         else
-            res.render('customer', { title: 'Customer', item: item });
+            res.render('customerview', { title: 'Customer', item: item });
     });
 }
 
