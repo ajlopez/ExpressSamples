@@ -42,6 +42,9 @@ app.get('/customers', customers.index);
 app.get('/customers/new', customers.create);
 app.post('/customers/new', customers.insert);
 app.get('/customers/:id', customers.view);
+app.get('/customers/:id/edit', customers.edit);
+app.post('/customers/:id/edit', customers.update);
+app.get('/customers/:id/remove', customers.remove);
 
 app.get('/about', function (req, res) { res.render('index', { title: 'About' }); });
 app.get('/contact', function (req, res) { res.render('index', { title: 'Contact' }); });

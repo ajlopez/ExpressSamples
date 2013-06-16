@@ -26,12 +26,30 @@ function Repository(db, name) {
         });
     };
     
-    this.save = function (item, callback) {
+    this.insert = function (item, callback) {
         getCollection(function (err, collection) {
             if (err)
                 callback(err);
             else
                 collection.insert(item, callback);
+        });
+    };
+    
+    this.update = function (id, item, callback) {
+        getCollection(function (err, collection) {
+            if (err)
+                callback(err);
+            else
+                collection.update({ _id: collection.db.bson_serializer.ObjectID.createFromHexString(id) }, item, callback);
+        });
+    };
+    
+    this.remove = function (id, callback) {
+        getCollection(function (err, collection) {
+            if (err)
+                callback(err);
+            else
+                collection.remove({ _id: collection.db.bson_serializer.ObjectID.createFromHexString(id) }, callback);
         });
     };
     
