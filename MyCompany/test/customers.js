@@ -2,33 +2,23 @@
 var customers = require('../routes/customers.js'),
     mongorepo = require('../libs/mongorepo.js');
 
-var db = mongorepo.openDatabase('mycompany-test', 'localhost', 27017, function () { dbopened = true; runcbs() });
-var dbopened = false
-customers.initialize(db); 
-
-var cbs = [ ];
-
-function runcbs() {
-    while (cbs.length) {
-        cb = cbs.shift();
-        cb();
-    }
-};
-
-function runcb(cb) {
-    if (dbopened)
-        cb();
-    else
-        cbs.push(cb);
-};
-
+var db;
 var req = { };
 var res = { };
 
-exports["Find all"] = function(test) {
+exports["Open database"] = function (test) {
+    test.expect(0);
+    
+    db = mongorepo.openDatabase('mycompany-test', 'localhost', 27017, function () {
+        customers.initialize(db); 
+        test.done();
+    });
+};
+
+exports["Find all"] = function (test) {
     test.expect(7);
     
-    res.render = function(name, model) {
+    res.render = function (name, model) {
         test.ok(name);
         test.ok(model);
         test.equal(name, 'customerlist');
@@ -39,5 +29,10 @@ exports["Find all"] = function(test) {
         test.done();
     };
     
-    runcb(function() { customers.index(req, res) });
+    customers.index(req, res);
+};
+
+exports["Close database"] = function (test) {
+    db.close();
+    test.done();
 };
