@@ -65,9 +65,11 @@ function Repository(db, name) {
 
 module.exports = {
     createRepository: function (db, name) { return new Repository(db, name); },
-    openDatabase: function (dbname, host, port) {
+    openDatabase: function (dbname, host, port, cb) {
+        if (!cb)
+            cb = function () { };
         var db = new mongodb.Db(dbname, new mongodb.Server(host, port, {auto_reconnect: true}, {}), { safe: true  });
-        db.open(function() { });
+        db.open(cb);
         return db;
     }
 };
