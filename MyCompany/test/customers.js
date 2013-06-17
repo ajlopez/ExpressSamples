@@ -5,17 +5,19 @@ var customers = require('../routes/customers.js'),
 var db;
 var req = { };
 var res = { };
+var repository;
 
 exports["Open database"] = function (test) {
     test.expect(0);
     
     db = mongorepo.openDatabase('mycompany-test', 'localhost', 27017, function () {
         customers.initialize(db); 
+        repository = mongorepo.createRepository(db, 'customer');
         test.done();
     });
 };
 
-exports["Find all"] = function (test) {
+exports["Get index"] = function (test) {
     test.expect(7);
     
     res.render = function (name, model) {
@@ -30,6 +32,45 @@ exports["Find all"] = function (test) {
     };
     
     customers.index(req, res);
+};
+
+exports["Get create"] = function (test) {
+    test.expect(5);
+    
+    res.render = function (name, model) {
+        test.ok(name);
+        test.ok(model);
+        test.equal(name, 'customernew');
+        test.ok(model.title);
+        test.equal(model.title, 'New Customer');
+        test.done();
+    };
+    
+    customers.create(req, res);
+};
+
+exports["Insert and Get view"] = function (test) {
+    test.expect(10);
+    
+    res.render = function (name, model) {
+        test.ok(name);
+        test.ok(model);
+        test.equal(name, 'customerview');
+        test.ok(model.title);
+        test.equal(model.title, 'Customer');
+        test.ok(model.item);
+        test.equal(model.item.name, "Customer 1");
+        test.equal(model.item.address, "Address 1");
+        test.done();
+    };
+    
+    repository.insert({ name: "Customer 1", address: "Address 1"}, function (err, items) {
+        test.equal(err, null);
+        test.ok(items);
+        var item = items[0];
+        var req = { params: { id: item._id.toString() } };
+        customers.view(req, res);
+    });
 };
 
 exports["Close database"] = function (test) {
