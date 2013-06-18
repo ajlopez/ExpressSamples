@@ -73,6 +73,30 @@ exports["Insert and Get view"] = function (test) {
     });
 };
 
+exports["Insert Customer"] = function (test) {
+    test.expect(5);
+    
+    res.render = function (name, model) {
+        test.ok(name);
+        test.ok(model);
+        test.equal(name, 'customerlist');
+        test.ok(model.title);
+        test.equal(model.title, 'Customers');
+        test.done();
+    };
+    
+    req = {
+        param: function (name) {
+            if (name == 'name')
+                return 'New Customer';
+            if (name == 'address')
+                return 'New Address';
+        }
+    }
+    
+    customers.insert(req, res);
+};
+
 exports["Close database"] = function (test) {
     db.close();
     test.done();
