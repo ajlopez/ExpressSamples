@@ -8,7 +8,7 @@ var res = { };
 var repository;
 
 exports["Open database"] = function (test) {
-    test.expect(0);
+    test.async();
     
     db = mongorepo.openDatabase('mycompany-test', 'localhost', 27017, function () {
         customers.initialize(db); 
@@ -18,7 +18,7 @@ exports["Open database"] = function (test) {
 };
 
 exports["Get index"] = function (test) {
-    test.expect(7);
+    test.async();
     
     res.render = function (name, model) {
         test.ok(name);
@@ -35,7 +35,7 @@ exports["Get index"] = function (test) {
 };
 
 exports["Get create"] = function (test) {
-    test.expect(5);
+    test.async();
     
     res.render = function (name, model) {
         test.ok(name);
@@ -50,7 +50,7 @@ exports["Get create"] = function (test) {
 };
 
 exports["Insert and Get view"] = function (test) {
-    test.expect(10);
+    test.async();
     
     res.render = function (name, model) {
         test.ok(name);
@@ -74,7 +74,7 @@ exports["Insert and Get view"] = function (test) {
 };
 
 exports["Insert Customer"] = function (test) {
-    test.expect(5);
+    test.async();
     
     res.render = function (name, model) {
         test.ok(name);
