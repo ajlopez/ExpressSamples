@@ -1,0 +1,19 @@
+<% layout('layout') -%>
+    <p>Welcome to <%= title %></p>
+
+    <div class='row-fluid'>
+    <form method='GET'>
+        <input name='q' value='<%= q ? q : '' %>'></input>
+        <input type='submit' value='Search'></input>
+    </form>
+    </div>
+    <div class='row-fluid'>
+<% 
+    if (photos) 
+        photos.forEach(function (photo) {
+%>
+    <div style="float: left"><img src='<%= photo.src %>'></div>
+<%
+        });
+%>
+    </div>
