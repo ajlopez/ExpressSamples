@@ -4,14 +4,16 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var engine = require('ejs-locals');
+var mongorepo = require('./libs/mongorepo');
 
 var routes = require('./routes/index');
 var customers = require('./routes/customers');
+var ccustomers = require('./controllers/customers');
+
+var db = mongorepo.openDatabase('mycompany', 'localhost', 27017);
+ccustomers.initialize(db); 
 
 var app = express();
-
-app.engine('ejs', engine);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,7 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/customer', customers);
+app.use('/customers', customers);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,6 +45,7 @@ if (app.get('env') === 'development') {
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
+            title: 'Error',
             error: err
         });
     });

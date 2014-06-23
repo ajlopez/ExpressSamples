@@ -1,4 +1,5 @@
-<% layout('layout') -%>
+<% include header %>
+
 <div class="row btn-group">
 <a class="btn btn-info" href="/customers">Customers</a>
 <a class="btn btn-primary" href="/customers/<%= item._id %>/edit">Edit Customer...</a>
@@ -17,3 +18,5 @@
     </table>
 </form>
 </div>
+
+<% include footer %>
