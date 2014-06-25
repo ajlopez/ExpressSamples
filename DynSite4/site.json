@@ -1,0 +1,17 @@
+{
+    "title": "Dynamic Site",
+    "pages": {
+        "home": {
+            "title": "Dynamic Site",
+            "text": "Welcome to Dynamic Site"
+        },
+        "about": {
+            "title": "About Us",
+            "text": "About us"
+        },
+        "contact": {
+            "title": "Contact",
+            "text": "Contact data"
+        }
+    }
+}
