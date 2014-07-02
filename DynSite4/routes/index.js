@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var lj = require('loadjsons');
 
-var site = require('../site.json');
+var site = lj.load('site');
 
 /* GET home page. */
 router.get('/', makeAction('home'));
