@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var lj = require('loadjsons');
 
-var site = lj.load('site');
+var site = lj.load('content/site');
 
 /* GET home page. */
 router.get('/', makeAction('home'));

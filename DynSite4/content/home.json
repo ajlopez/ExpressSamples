@@ -1,0 +1,14 @@
+{
+    "title": "Dynamic Site",
+    "text": "Welcome to Dynamic Site",
+    "parts": [
+        {
+            "title": "First Part",
+            "text": "First Text"
+        },
+        {
+            "title": "Second Part",
+            "text": "Second Text"
+        }
+    ]
+}
