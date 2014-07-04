@@ -2,13 +2,7 @@
     "title": "Dynamic Site",
     "pages": {
         "home": "$home",
-        "about": {
-            "title": "About Us",
-            "text": "About us"
-        },
-        "contact": {
-            "title": "Contact",
-            "text": "Contact data"
-        }
+        "about": "$about",
+        "contact": "$contact"
     }
 }
