@@ -1,2 +1,10 @@
 <% layout('layout') -%>
     <p>Welcome to <%= title %>, using Twitter Bootstrap.</p>
+    <p>Now is <%= new Date() %></p>
+    <%
+        [1,2,3].forEach(function (item) {
+    %>
+        <p>Customer <%= item %></p>
+    <%
+        });
+    %>
