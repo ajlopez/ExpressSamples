@@ -16,6 +16,15 @@ function index(req, res) {
     });
 }
 
+function list(req, res) {
+    repository.findAll(function (err, items) {
+        if (err)
+            res.json(err);
+        else
+            res.json(items);
+    });
+}
+
 function create(req, res) {
     res.render('customernew', { title: 'New Customer' });
 }
@@ -50,7 +59,7 @@ function remove(req, res) {
 function view(req, res) {
     repository.findById(req.params.id, function(err, item) {
         if (err)
-            res.render('error', { error: err});
+            res.render('error', { error: err, title: 'Error' });
         else
             res.render('customerview', { title: 'Customer', item: item });
     });
@@ -70,6 +79,7 @@ exports.initialize = function (db) {
 };
 
 exports.index = index;
+exports.list = list;
 exports.create = create;
 exports.insert = insert;
 exports.view = view;

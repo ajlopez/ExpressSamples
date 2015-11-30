@@ -1,5 +1,6 @@
 
 var mongodb = require('mongodb');
+var ObjectID = mongodb.ObjectID;
 
 function Repository(db, name) {
     function getCollection(callback) {
@@ -40,7 +41,7 @@ function Repository(db, name) {
             if (err)
                 callback(err);
             else
-                collection.update({ _id: collection.db.bson_serializer.ObjectID.createFromHexString(id) }, item, callback);
+                collection.update({ _id: ObjectID.createFromHexString(id) }, item, callback);
         });
     };
     
@@ -49,7 +50,7 @@ function Repository(db, name) {
             if (err)
                 callback(err);
             else
-                collection.remove({ _id: collection.db.bson_serializer.ObjectID.createFromHexString(id) }, callback);
+                collection.remove({ _id: ObjectID.createFromHexString(id) }, callback);
         });
     };
     
@@ -58,7 +59,7 @@ function Repository(db, name) {
             if (err)
                 callback(err);
             else
-                collection.findOne({ _id: collection.db.bson_serializer.ObjectID.createFromHexString(id) }, callback);
+                collection.findOne({ _id: ObjectID.createFromHexString(id) }, callback);
         });
     };
 };

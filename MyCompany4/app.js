@@ -8,6 +8,7 @@ var mongorepo = require('./libs/mongorepo');
 
 var routes = require('./routes/index');
 var customers = require('./routes/customers');
+var customersapi = require('./routes/customersapi');
 var ccustomers = require('./controllers/customers');
 
 var db = mongorepo.openDatabase('mycompany', 'localhost', 27017);
@@ -22,12 +23,13 @@ app.set('view engine', 'ejs');
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/customers', customers);
+app.use('/api/customer', customersapi);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
